@@ -19,6 +19,28 @@ public interface ILogger
 }
 ```
 
+## Extension Methods
+```
+public static class StringExtensions
+{
+    public static string Quote(this string str)
+    {
+        return $"\"{str}\"";
+    }
+}
+
+var myString = "Hello, world!";
+Console.WriteLine(myString.Quote());
+```
+
+## Null-Conditional Operator
+```
+string[] array = null;
+var length = array?.Length ?? 0;
+
+// length is 0 without throwing an exception.
+```
+
 ## Nullable Reference Types
 ```
 string? name = GetName();
@@ -29,6 +51,18 @@ Console.WriteLine(name?.ToUpper()); // Secure Access
 ```
 if (int.TryParse("123", out int number))
 Console.WriteLine($"Parsed: {number}");
+```
+
+## Dynamic LINQ to SQL
+```
+using (var context = new DataContext())
+{
+    var query = context.People.Where("City == @0 and Age > @1", "Seattle", 25);
+    foreach (var person in query)
+    {
+        Console.WriteLine(person.Name);
+    }
+}
 ```
 
 ## Master LINQ for cleaner, faster code
@@ -45,10 +79,13 @@ var newList = immutableList.Add(4); // Returns a new list
 
 ## Async/Await
 ```
-async Task FetchDataAsync()
+public async Task<string> FetchDataAsync(string url)
 {
-  var result = await httpClient.GetStringAsync("https://example.com");
-  Console.WriteLine(result);
+    using (var httpClient = new HttpClient())
+    {
+        var response = await httpClient.GetStringAsync(url);
+        return response;
+    }
 }
 ```
 
@@ -80,6 +117,14 @@ Console.WriteLine(number); // Outputs 10, 11, 12, 13, 14
 ```
 Span<int> numbers = stackalloc int[5] { 1, 2, 3, 4, 5 };
 Console.WriteLine(numbers[2]); // Output: 3
+```
+
+## Read-Only Collections
+```
+var originalList = new List<string> { "Alice", "Bob", "Charlie" };
+var readOnlyCollection = originalList.AsReadOnly();
+
+// readOnlyCollection is now immutable.
 ```
 
 ## Explore Global Uses
