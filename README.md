@@ -37,6 +37,15 @@ public class Person
 }
 ```
 
+## Init-Only Setters — Clean Object Initialization
+```
+public class Product
+{
+    public string Name { get; init; }
+    public decimal Price { get; init; }
+}
+```
+
 ## Readonly Structs for Immutable Data Types
 ```
 public readonly struct Point
