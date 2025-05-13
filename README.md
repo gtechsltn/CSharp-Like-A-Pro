@@ -19,6 +19,35 @@ public interface ILogger
 }
 ```
 
+## Collection Expressions
+```
+int[] numbers = [1, 2, 3, 4, 5];
+List<string> names = ["Alice", "Bob", "Charlie"];
+```
+
+## Required Members Now Enforced Better
+```
+public class Product
+{
+    public required string Name { get; set; }
+    public required decimal Price { get; set; }
+}
+```
+
+## Frozen Collections for Performance: Immutability + blazing fast lookup!
+```
+var frozenSet = new[] { "apple", "banana", "cherry" }.ToFrozenSet();
+var frozenDict = new Dictionary<int, string> { {1, "one"}, {2, "two"} }.ToFrozenDictionary();
+```
+
++ Faster than **HashSet** and **Dictionary** for **read-only** scenarios.
++ Great for **configuration**, **cache** keys.
+
+## Improved Time Abstractions
+```
+var now = TimeProvider.System.GetUtcNow();
+```
+
 ## Using Local Functions for Encapsulation
 ```
 public IEnumerable<int> Fibonacci(int n)
@@ -226,6 +255,25 @@ if (data is int number)
 }
 ```
 
+## AllowedValuesAttribute
+```
+public class UserInput
+{
+    [AllowedValues("Admin", "User", "Guest")]
+    public string Role { get; set; }
+}
+```
+
+## System.Text.Json is Native, fast, flexible
+```
+var options = new JsonSerializerOptions
+{
+    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+    WriteIndented = true
+};
+var json = JsonSerializer.Serialize(myObject, options);
+```
+
 ## String StartsWith and EndsWith
 ```
 string fileName = "report.docx";
@@ -265,10 +313,11 @@ if (myArray is ["first", ., "last"])
 ```
 
 # References
-+ [C# Tips: Time Series Analysis Like a Pro](https://medium.com/@WC_/c-tips-time-series-analysis-like-a-pro-5d44db178842);
-+ [10 Advanced C# Tricks for Experienced Developers](https://medium.com/@kmorpex/10-advanced-c-tricks-for-experienced-developers-26a48c6a8c9c);
-+ [10 Useful C# .NET Snippets To Code Like a Pro](https://medium.com/@kmorpex/10-useful-c-net-snippets-to-code-like-a-pro-cb196dbc86d4);
-+ [7 Clever Async Tips for C#/.NET Ninjas](https://medium.com/@kmorpex/7-clever-async-tips-for-c-net-ninjas-223b8cefd120);
++ [C# Tips: Time Series Analysis Like a Pro](https://medium.com/@WC_/c-tips-time-series-analysis-like-a-pro-5d44db178842)
++ [10 Advanced C# Tricks for Experienced Developers](https://medium.com/@kmorpex/10-advanced-c-tricks-for-experienced-developers-26a48c6a8c9c)
++ [10 Useful C# .NET Snippets To Code Like a Pro](https://medium.com/@kmorpex/10-useful-c-net-snippets-to-code-like-a-pro-cb196dbc86d4)
++ [10 Hidden Features in .NET 8 You Should Start Using Today](https://medium.com/c-sharp-programming/10-hidden-features-in-net-8-you-should-start-using-today-420ff09fbbf0)
++ [7 Clever Async Tips for C#/.NET Ninjas](https://medium.com/@kmorpex/7-clever-async-tips-for-c-net-ninjas-223b8cefd120)
 
 ## Build a Command Line Interface(CLI) Program with .NET Core
 + [Build a Command Line Interface(CLI) Program with .NET Core](https://medium.com/swlh/build-a-command-line-interface-cli-program-with-net-core-428c4c85221)
