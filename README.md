@@ -260,3 +260,76 @@ if (myArray is ["first", ., "last"])
 + [10 Advanced C# Tricks for Experienced Developers](https://medium.com/@kmorpex/10-advanced-c-tricks-for-experienced-developers-26a48c6a8c9c);
 + [10 Useful C# .NET Snippets To Code Like a Pro](https://medium.com/@kmorpex/10-useful-c-net-snippets-to-code-like-a-pro-cb196dbc86d4);
 + [7 Clever Async Tips for C#/.NET Ninjas](https://medium.com/@kmorpex/7-clever-async-tips-for-c-net-ninjas-223b8cefd120);
+
+## Build a Command Line Interface(CLI) Program with .NET Core
++ [Build a Command Line Interface(CLI) Program with .NET Core](https://medium.com/swlh/build-a-command-line-interface-cli-program-with-net-core-428c4c85221)
+```
+Install-Package Microsoft.Extensions.Hosting
+
+Install-Package Serilog.Extensions.Logging
+Install-Package Serilog.Settings.Configuration
+Install-Package Serilog.Sinks.Console
+Install-Package Serilog.Sinks.File
+
+Install-Package McMaster.Extensions.CommandLineUtils
+Install-Package McMaster.Extensions.Hosting.CommandLine
+```
+
+## Crafting a Powerful API Performance CLI: Approach with .NET Core and System.CommandLine
++ [Crafting a Powerful API Performance CLI: Approach with .NET Core and System.CommandLine](https://dev.to/alisson_podgurski/crafting-a-powerful-api-performance-cli-approach-with-net-core-and-systemcommandline-3i9k)
+```
+dotnet new console -n ApiPerformanceTool
+cd ApiPerformanceTool
+
+dotnet add package System.CommandLine
+dotnet add package System.Net.Http
+dotnet add package System.CommandLine.NamingConventionBinder
+
+dotnet run -- test https://api.example.com/endpoint --concurrent 100 --output report1.txt
+
+dotnet run -- compare report1.txt report2.txt
+```
+
+## How to Create Command Line Console Applications in .NET with Cocona
++ [How to Create Command Line Console Applications in .NET](https://antondevtips.com/blog/how-to-create-command-line-console-applications-in-dotnet)
++ [Building a Command Line Interface (CLI) program using System.CommandLine library in C#](https://medium.com/@devedium/building-a-command-line-interface-cli-program-using-system-commandline-library-in-c-ec0e8fbbd88d)
++ [Micro-framework for .NET console application. Cocona makes it easy and fast to build console applications on .NET.](https://github.com/mayuki/Cocona)
+```
+dotnet add package HtmlAgilityPack
+dotnet add package AngleSharp
+
+# Cocona
+dotnet add package Cocona
+
+# A lightweight version is also available if you prefer less dependency.
+dotnet add package Cocona.Lite
+```
+
+## Building Command Line Applications with .NET: A Comprehensive Guide with ReadLine
++ [Building Command Line Applications with .NET: A Comprehensive Guide](https://blog.stackademic.com/building-command-line-applications-with-net-a-comprehensive-guide-69836f8186d0)
++ [Guidelines for creating your own CLI tool](https://medium.com/jit-team/guidelines-for-creating-your-own-cli-tool-c95d4af62919)
++ [A Pure C# GNU-Readline like library for .NET/.NET Core](https://github.com/tonerdo/readline)
+```
+dotnet add package System.CommandLine --version <latest_version>
+dotnet add package ReadLine --version <latest_version>
+dotnet publish -c Release -r win10-x64 --self-contained
+dotnet publish -c Release -r win10-x64 --self-contained -p:PublishTrimmed=true
+dotnet pack -c Release
+dotnet nuget push ./nupkg/YourToolName.<version>.nupkg --api-key Your_NuGet_Api_Key
+dotnet tool install --global YourToolName
+```
+
+## Building a Secure Authentication System in .NET Core
+
+## The Complete Guide to OAuth Integration with C#
++ [The Complete Guide to OAuth Integration with C#](https://medium.com/@WC_/the-complete-guide-to-oauth-integration-with-c-from-beginner-to-pro-c7c31ceecf32)
+```
+dotnet add package Microsoft.IdentityModel.Protocols.OpenIdConnect
+```
+
+## OxyPlot is a cross-platform plotting library for .NET Core
++ [OxyPlot](https://github.com/oxyplot/oxyplot)
+
+## dotnet cli
++ [Important .NET CLI Commands: Essential Tools for .NET Developers](https://hardyian.medium.com/important-net-cli-commands-essential-tools-for-net-developers-b180d1dc10af)
++ [.NET Core Architecture and .NET CLI](https://medium.com/mr-plan-publication/net-core-architecture-and-net-cli-290cc44d8097)
