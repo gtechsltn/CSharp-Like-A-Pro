@@ -19,6 +19,53 @@ public interface ILogger
 }
 ```
 
+## Using Local Functions for Encapsulation
+```
+public IEnumerable<int> Fibonacci(int n)
+{
+    int Fib(int term) => term <= 2 ? 1 : Fib(term - 1) + Fib(term - 2);
+    return Enumerable.Range(1, n).Select(Fib);
+}
+```
+
+## Expression-bodied Members for Succinct Code
+```
+public class Person
+{
+    public string Name { get; set; }
+    public override string ToString() => $"Name: {Name}";
+}
+```
+
+## Readonly Structs for Immutable Data Types
+```
+public readonly struct Point
+{
+    public double X { get; }
+    public double Y { get; }
+    
+    public Point(double x, double y) => (X, Y) = (x, y);
+}
+```
+
+## Ref Returns and Locals for Performance Optimization
+```
+public ref int Find(int[] numbers, int target)
+{
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        if (numbers[i] == target)
+            return ref numbers[i];
+    }
+    throw new IndexOutOfRangeException("Not found");
+}
+```
+
+## Using Discards to Ignore Unwanted Returns
+```
+var (_, product) = Calculate(3, 4); // Only interested in the product
+```
+
 ## Extension Methods
 ```
 public static class StringExtensions
@@ -45,6 +92,13 @@ var length = array?.Length ?? 0;
 ```
 string? name = GetName();
 Console.WriteLine(name?.ToUpper()); // Secure Access
+```
+
+## Null Coalescing Assignment for Streamlined Null Checks
+```
+List<int> numbers = null;
+numbers ??= new List<int>();
+numbers.Add(1);
 ```
 
 ## Inline out variables
@@ -98,6 +152,19 @@ async IAsyncEnumerable<int> GetNumbersAsync()
     yield return i;
     await Task.Delay(100);
   }
+}
+```
+
+## Asynchronous Streams with IAsyncEnumerable
+
+```
+public async IAsyncEnumerable<int> GetNumbersAsync()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        await Task.Delay(100); // Simulate asynchronous work
+        yield return i;
+    }
 }
 ```
 
@@ -187,3 +254,9 @@ if (myArray is ["first", ., "last"])
   Console.WriteLine("The array starts with 'first' and ends with 'last'.");
 }
 ```
+
+# References
++ [C# Tips: Time Series Analysis Like a Pro](https://medium.com/@WC_/c-tips-time-series-analysis-like-a-pro-5d44db178842);
++ [10 Advanced C# Tricks for Experienced Developers](https://medium.com/@kmorpex/10-advanced-c-tricks-for-experienced-developers-26a48c6a8c9c);
++ [10 Useful C# .NET Snippets To Code Like a Pro](https://medium.com/@kmorpex/10-useful-c-net-snippets-to-code-like-a-pro-cb196dbc86d4);
++ [7 Clever Async Tips for C#/.NET Ninjas](https://medium.com/@kmorpex/7-clever-async-tips-for-c-net-ninjas-223b8cefd120);
