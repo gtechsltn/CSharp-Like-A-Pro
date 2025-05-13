@@ -312,12 +312,106 @@ if (myArray is ["first", ., "last"])
 }
 ```
 
+## Span
+```
+ReadOnlySpan<char> slice = bigString.AsSpan(start, length);
+```
+
+## TryParse
+```
+if (int.TryParse(input, out var value)) { ... }
+```
+
+## Cache
+```
+IMemoryCache = single-server, in-memory
+IDistributedCache (Redis, SQL Server) = multi-server
+```
+
+## Lazy
+```
+private readonly Lazy<ExpensiveService> _service = new Lazy<ExpensiveService>(() => new ExpensiveService());
+```
+
+## Null Guards Should Be Explicit
+```
+void Process(string input)  
+{  
+    if (input == null) throw new ArgumentNullException(nameof(input));  
+    ...  
+}
+```
+
+### Now, with C# 11:
+```
+void Process(string input!!)  
+{  
+    ...  
+}
+```
+
+## Leverage Pattern Matching
+```
+static string GetMessage(object obj) => obj switch
+{
+    int number => $"Number: {number}",
+    string text => $"Text: {text}",
+    _ => "Unknown type"
+};
+```
+
+## Nullable Reference Types
++ [#nullable enable](https://medium.com/@vikpoca/exceptions-in-net-are-slow-do-this-instead-f01bfc6856ae)
+```
+#nullable enable
+public string GetFullName(User? user)  
+{  
+    if (user == null)  
+        throw new ArgumentNullException(nameof(user));  
+    
+    return $"{user.FirstName} {user.LastName}";  
+}
+```
+
+## Caller Attributes
++ [Caller Info Attributes](https://medium.com/@dinko.pavicic/the-c-attributes-series-caller-attributes-better-error-handling-and-validation-2bdf8d3a10ff)
++ [Caller Information Attributes in C#](https://medium.com/@developerpazl/caller-information-attributes-in-c-c74270fec65f)
++ [The C# Attributes Series: Caller Attributes — Better Error Handling and Validation](https://medium.com/@dinko.pavicic/the-c-attributes-series-caller-attributes-better-error-handling-and-validation-2bdf8d3a10ff)
++ CallerArgumentExpressionAttribute
+```
+void ValidateArgument(bool condition, [CallerArgumentExpression("condition")] string? expression = null)
+{
+    if (!condition)
+    {
+        throw new ArgumentException($"Argument failed validation: {expression}");
+    }
+}
+```
++ CallerMemberName Attribute
+```
+public void Log(string message, [CallerMemberName] string memberName = "")
+{
+    Console.WriteLine($"Log from {memberName}: {message}");
+}
+public void Log(string message, [CallerFilePath] string filePath = "")
+{
+    Console.WriteLine($"Log from {filePath}: {message}");
+}
+public void Log(string message, [CallerLineNumber] int lineNumber = 0)
+{
+    Console.WriteLine($"Log at line {lineNumber}: {message}");
+}
+```
+
 # References
 + [C# Tips: Time Series Analysis Like a Pro](https://medium.com/@WC_/c-tips-time-series-analysis-like-a-pro-5d44db178842)
++ [17 Tips from a Senior .NET Developer — Part 1](https://medium.com/write-a-catalyst/17-tips-from-a-senior-net-developer-fc43b604d8c0)
++ [17 Tips from a .NET Developer — Part 2](https://medium.com/c-sharp-programming/17-tips-from-a-net-developer-part-2-c842a3e3c9aa)
 + [10 Advanced C# Tricks for Experienced Developers](https://medium.com/@kmorpex/10-advanced-c-tricks-for-experienced-developers-26a48c6a8c9c)
 + [10 Useful C# .NET Snippets To Code Like a Pro](https://medium.com/@kmorpex/10-useful-c-net-snippets-to-code-like-a-pro-cb196dbc86d4)
 + [10 Hidden Features in .NET 8 You Should Start Using Today](https://medium.com/c-sharp-programming/10-hidden-features-in-net-8-you-should-start-using-today-420ff09fbbf0)
 + [7 Clever Async Tips for C#/.NET Ninjas](https://medium.com/@kmorpex/7-clever-async-tips-for-c-net-ninjas-223b8cefd120)
+
 
 ## Build a Command Line Interface(CLI) Program with .NET Core
 + [Build a Command Line Interface(CLI) Program with .NET Core](https://medium.com/swlh/build-a-command-line-interface-cli-program-with-net-core-428c4c85221)
